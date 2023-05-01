@@ -1,10 +1,12 @@
 ## usersテーブル
 
-| Column              | Type                 | Options                  |
-|---------------------|----------------------|--------------------------|
-| name                | string               | null: false              |
-| encrypted_password  | string               | null: false              |
-| email               | string               | null: false, unique: true|
+| Column              | Type                 | options      |
+|---------------------|----------------------|--------------|
+| name                | string               |              |
+| nickname            | string               |              |
+| birth date          | string               |              |
+| encrypted_password  | string               |              |
+| email               | string               | unique: true |
 
 ### Association
 * has_many :items
@@ -14,44 +16,43 @@
 
 | Column              | Type                 | Options                       |
 |---------------------|----------------------|-------------------------------|
-| image               | string               | null: false                   |
-| name                | string               | null: false                   |
-| explanation         | text                 | null: false                   |
-| category            | string               | null: false                   |
-| condition           | string               | null: false                   |
-| area                | string               | null: false                   |
-| delivery charge     | integer              | null: false                   |
-| number              | integer              | null: false                   |
-| price               | integer              | null: false                   |
-| user_id             | references           | null: false, foreign_key: true|
+| name                | string               |                               |
+| explanation         | text                 |                               |
+| category_id         | integer              |                               |
+| condition_id        | integer              |                               |
+| area_id             | integer              |                               |
+| delivery_charge_id  | integer              |                               |
+| number_id           | integer              |                               |
+| price               | integer              |                               |
+| user                | references           | null: false, foreign_key: true|
 
 ### Association
 - belongs_to :users
 - belongs_to :sends
-- belongs_to :records
+- has_one :records
 
 ## sendsテーブル
 
 | Column              | Type                 | Options                       |
 |---------------------|----------------------|-------------------------------|
-| post code           | integer              | null: false                   |
-| prefecture          | text                 | null: false                   |
-| city                | string               | null: false                   |
-| address             | string               | null: false                   |
-| tel                 | string               | null: false                   |
-| building            | string               | null: false                   |
-| item_id             | references           | null: false, foreign_key: true| 
+| post_code           | string               |                               |
+| area_id             | integer              |                               |
+| city                | string               |                               |
+| address             | string               |                               |
+| tel                 | string               |                               |
+| building            | string               |                               |
+| item                | references           | null: false, foreign_key: true| 
+| records             | references           | null: false, foreign_key: true|
 ### Association
 - belongs_to :items
+- belongs_to :records
 
 ## recordsテーブル
 
 | Column              | Type                 | Options                       |
 |---------------------|----------------------|-------------------------------|
-| buyer               | integer              | null: false                   |
-| item                | string               | null: false                   |
-| user_id             | references           | null: false, foreign_key: true|
-| item_id             | references           | null: false, foreign_key: true|
+| user                | references           | null: false, foreign_key: true|
+| item                | references           | null: false, foreign_key: true|
 
 - belongs_to :items
 - belongs_to :users 
