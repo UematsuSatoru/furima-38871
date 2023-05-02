@@ -2,9 +2,12 @@
 
 | Column              | Type                 | options      |
 |---------------------|----------------------|--------------|
-| name                | string               |              |
+| last_name           | string               |              |
+| first_name          | string               |              |
+| furigana_last       | string               |              |
+| furigana_first      | string               |              |
 | nickname            | string               |              |
-| birth date          | string               |              |
+| birth_date          | date                 |              |
 | encrypted_password  | string               |              |
 | email               | string               | unique: true |
 
@@ -27,8 +30,8 @@
 | user                | references           | null: false, foreign_key: true|
 
 ### Association
-- belongs_to :users
-- belongs_to :sends
+- belongs_to :user
+- belongs_to :send
 - has_one :records
 
 ## sendsテーブル
@@ -40,12 +43,10 @@
 | city                | string               |                               |
 | address             | string               |                               |
 | tel                 | string               |                               |
-| building            | string               |                               |
-| item                | references           | null: false, foreign_key: true| 
+| building            | string               |                               | 
 | records             | references           | null: false, foreign_key: true|
 ### Association
-- belongs_to :items
-- belongs_to :records
+- belongs_to :record
 
 ## recordsテーブル
 
@@ -54,5 +55,5 @@
 | user                | references           | null: false, foreign_key: true|
 | item                | references           | null: false, foreign_key: true|
 
-- belongs_to :items
-- belongs_to :users 
+- belongs_to :item
+- belongs_to :user
