@@ -2,13 +2,13 @@
 
 | Column              | Type                 | options      |
 |---------------------|----------------------|--------------|
-| last_name           | string               |              |
-| first_name          | string               |              |
-| furigana_last       | string               |              |
-| furigana_first      | string               |              |
-| nickname            | string               |              |
-| birth_date          | date                 |              |
-| encrypted_password  | string               |              |
+| last_name           | string               | null: false  |
+| first_name          | string               | null: false  |
+| furigana_last       | string               | null: false  |
+| furigana_first      | string               | null: false  |
+| nickname            | string               | null: false  |
+| birth_date          | date                 | null: false  |
+| encrypted_password  | string               | null: false  |
 | email               | string               | unique: true |
 
 ### Association
@@ -19,30 +19,29 @@
 
 | Column              | Type                 | Options                       |
 |---------------------|----------------------|-------------------------------|
-| name                | string               |                               |
-| explanation         | text                 |                               |
-| category_id         | integer              |                               |
-| condition_id        | integer              |                               |
-| area_id             | integer              |                               |
-| delivery_charge_id  | integer              |                               |
-| number_id           | integer              |                               |
-| price               | integer              |                               |
+| name                | string               | null: false                   |
+| explanation         | text                 | null: false                   |
+| category_id         | integer              | null: false                   |
+| condition_id        | integer              | null: false                   |
+| area_id             | integer              | null: false                   |
+| delivery_charge_id  | integer              | null: false                   |
+| number_id           | integer              | null: false                   |
+| price               | integer              | null: false                   |
 | user                | references           | null: false, foreign_key: true|
 
 ### Association
 - belongs_to :user
-- belongs_to :send
 - has_one :records
 
 ## sendsテーブル
 
 | Column              | Type                 | Options                       |
 |---------------------|----------------------|-------------------------------|
-| post_code           | string               |                               |
-| area_id             | integer              |                               |
-| city                | string               |                               |
-| address             | string               |                               |
-| tel                 | string               |                               |
+| post_code           | string               | null: false                   |
+| area_id             | integer              | null: false                   |
+| city                | string               | null: false                   |
+| address             | string               | null: false                   |
+| tel                 | string               | null: false                   |
 | building            | string               |                               | 
 | records             | references           | null: false, foreign_key: true|
 ### Association
@@ -57,3 +56,4 @@
 
 - belongs_to :item
 - belongs_to :user
+- has_one :sends
