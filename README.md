@@ -1,15 +1,15 @@
 ## usersテーブル
 
-| Column              | Type                 | options      |
-|---------------------|----------------------|--------------|
-| last_name           | string               | null: false  |
-| first_name          | string               | null: false  |
-| furigana_last       | string               | null: false  |
-| furigana_first      | string               | null: false  |
-| nickname            | string               | null: false  |
-| birth_date          | date                 | null: false  |
-| encrypted_password  | string               | null: false  |
-| email               | string               | unique: true |
+| Column              | Type                 | options                   |
+|---------------------|----------------------|---------------------------|
+| last_name           | string               | null: false               |
+| first_name          | string               | null: false               |
+| furigana_last       | string               | null: false               |
+| furigana_first      | string               | null: false               |
+| nickname            | string               | null: false               |
+| birth_date          | date                 | null: false               |
+| encrypted_password  | string               | null: false               |
+| email               | string               | null: false, unique: true |
 
 ### Association
 * has_many :items
@@ -31,7 +31,7 @@
 
 ### Association
 - belongs_to :user
-- has_one :records
+- has_one :record
 
 ## sendsテーブル
 
@@ -43,7 +43,7 @@
 | address             | string               | null: false                   |
 | tel                 | string               | null: false                   |
 | building            | string               |                               | 
-| records             | references           | null: false, foreign_key: true|
+| record             | references           | null: false, foreign_key: true|
 ### Association
 - belongs_to :record
 
@@ -56,4 +56,4 @@
 
 - belongs_to :item
 - belongs_to :user
-- has_one :sends
+- has_one :send
