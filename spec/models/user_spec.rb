@@ -29,8 +29,9 @@ RSpec.describe User, type: :model do
     end
     it 'passwordが英字と数字の両方を含めるていないと登録できない' do
         @user.password = 'aaaaaaaa'
+        @user.password_confirmation = 'aaaaaaaa'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password is invalid")
+        expect(@user.errors.full_messages).to include("Password is invalid. Include both letters and numbers")
     end
     it 'passwordとpassword_confirmationが不一致では登録できない' do
         @user.password = 'aaaaa11'
@@ -70,7 +71,7 @@ RSpec.describe User, type: :model do
     it 'last_nameが全角ひらがな、全角カタカナ、漢字でなければ登録できない'do
         @user.last_name = 'YAMADA'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Last name is invalid")
+        expect(@user.errors.full_messages).to include("Last name is invalid. Input full-width characters")
     end
     it 'first_nameが空では登録できない' do
         @user.first_name = ''
@@ -80,7 +81,7 @@ RSpec.describe User, type: :model do
     it 'first_nameが全角ひらがな、全角カタカナ、漢字でなければ登録できない'do
         @user.first_name = 'YAMADA'
         @user.valid?
-        expect(@user.errors.full_messages).to include("First name is invalid")
+        expect(@user.errors.full_messages).to include("First name is invalid. Input full-width characters")
     end
     it 'last_kanaが空では登録できない' do
         @user.last_kana = ''
@@ -90,7 +91,7 @@ RSpec.describe User, type: :model do
     it 'last_kanaが全角カタカナでなければ登録できない'do
          @user.last_kana = '山田'
          @user.valid?
-         expect(@user.errors.full_messages).to include("Last kana is invalid")
+         expect(@user.errors.full_messages).to include("Last kana is invalid. Input full-width katakana characters")
     end
     it 'first_kanaが空では登録できない' do
         @user.first_kana = ''
@@ -100,7 +101,7 @@ RSpec.describe User, type: :model do
     it 'first_kanaが全角カタカナでなければ登録できない'do
         @user.first_kana = '太郎'
         @user.valid?
-        expect(@user.errors.full_messages).to include("First kana is invalid")
+        expect(@user.errors.full_messages).to include("First kana is invalid. Input full-width katakana characters")
     end
     it 'birth_dateが空では登録できない' do
         @user.birth_date = ''
