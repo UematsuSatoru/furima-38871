@@ -4,6 +4,6 @@ class Information < ApplicationRecord
 
   validates :Item_name, :Item_description, presence: true
 
-  validates :category_id, :condition_id, :area_id, :delivery_charge_id, :number_id,  numericality: { other_than: 1 } 
+  validates :category_id, :condition_id, :area_id, :delivery_charge_id, :number_id,  numericality: { other_than: 1 , message: "can't be blank"} 
 
 end
