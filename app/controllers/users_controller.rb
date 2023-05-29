@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
-  def 
+  def index
+    @users
   end 
 end
