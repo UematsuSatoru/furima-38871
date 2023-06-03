@@ -8,7 +8,7 @@ class Item < ApplicationRecord
 
   validates :name, presence: true
   validates :explanation, presence: true
-  validates :category_id, :condition_id, :area_id, :delivery_charge_id, :number_id,  numericality: { other_than: 1 , message: "can't be blank"} 
+  validates :image, :category_id, :condition_id, :area_id, :delivery_charge_id, :number_id, :price, numericality: { other_than: 1 , message: "can't be blank"} 
 
   has_one :record
   
