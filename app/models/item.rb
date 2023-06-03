@@ -13,4 +13,5 @@ class Item < ApplicationRecord
   has_one :record
   
   has_one_attached :image
+  
 end
