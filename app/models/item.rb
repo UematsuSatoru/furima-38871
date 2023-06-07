@@ -5,6 +5,7 @@ class Item < ApplicationRecord
   belongs_to :area
   belongs_to :delivery_charge
   belongs_to :user
+  belongs_to :number
 
   validates :name, presence: true
   validates :explanation, presence: true
@@ -13,7 +14,7 @@ class Item < ApplicationRecord
   validates :price, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, message: "is out of setting range" }  
   validates :price, presence: true
   
-  has_one :record
+  #has_one :record
   
   has_one_attached :image
 

@@ -1,5 +1,6 @@
 FactoryBot.define do
   factory :item do
+    image              { Rack::Test::UploadedFile.new('app/assets/images/furima-footer.png') }
     name               {Faker::Lorem.characters(number: 10)}
     explanation        {Faker::Lorem.characters(number: 20)}
     category_id        {Faker::Number.between(from: 2, to: 11)}
