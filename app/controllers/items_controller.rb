@@ -4,7 +4,7 @@ class ItemsController < ApplicationController
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   def index
-    #@items = Item.order("created_at DESC")
+    @items = Item.all
   end
 
   def new
