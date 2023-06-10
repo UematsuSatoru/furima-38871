@@ -1,7 +1,9 @@
 class ItemsController < ApplicationController
-  
+
+  before_action :correct_user, only: [:edit, :update]
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :configure_permitted_parameters, if: :devise_controller? 
+  
 
   def index
     @items = Item.all.order("created_at DESC")
@@ -37,7 +39,7 @@ class ItemsController < ApplicationController
       render :edit
     end
   end
-  
+
 
   private
 
@@ -46,4 +48,9 @@ class ItemsController < ApplicationController
     .merge(user_id: current_user.id)
   end
 
+  def correct_user
+    @item = Item.find(params[:id])
+    redirect_to root_path unless @item.user_id == current_user.id
+  end
 end
+
