@@ -1,7 +1,9 @@
 class ItemsController < ApplicationController
-  
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :set_item, only: [:show, :edit, :update]
+  before_action :correct_user, only: [:edit, :update]
+  
+  
 
   def index
     @items = Item.all.order("created_at DESC")
@@ -21,17 +23,19 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
   end
 
   def edit
-    @item = Item.find(params[:id])
   end
 
   def update
-    item = Item.find(params[:id])
-    item.update(item_params)
+    if @item.update(item_params)
+      redirect_to item_path
+    else
+      render :edit
+    end
   end
+
 
   private
 
@@ -40,4 +44,11 @@ class ItemsController < ApplicationController
     .merge(user_id: current_user.id)
   end
 
+  def correct_user
+    redirect_to root_path unless @item.user_id == current_user.id
+  end
+  
+  def set_item
+    @item = Item.find(params[:id])
+  end
 end
