@@ -43,7 +43,7 @@
 | address             | string               | null: false                   |
 | tel                 | string               | null: false                   |
 | building            | string               |                               | 
-| record             | references           | null: false, foreign_key: true|
+| record              | references           | null: false, foreign_key: true|
 ### Association
 - belongs_to :record
 
