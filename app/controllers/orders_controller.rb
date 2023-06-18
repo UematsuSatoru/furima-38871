@@ -4,8 +4,11 @@ class OrdersController < ApplicationController
     @item = Item.find(params[:item_id]) 
   end
 
+
+
   def create
     @sends_records_form = SendsRecordsForm.new(order_params)
+    @item = Item.find(params[:item_id]) 
     if @sends_records_form.valid?
       @sends_records_form.save
       redirect_to root_path
@@ -17,6 +20,6 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:sends_records_form).permit(:image,:price,:name, :post_code, :area_id, :city, :address, :tel, :building).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token]) 
+    params.require(:sends_records_form).permit(:post_code, :area_id, :city, :address, :tel, :building, :user_id, :item_id)
   end
 end
