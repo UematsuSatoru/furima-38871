@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
   def index
     @sends_records_form = SendsRecordsForm.new
+    @item = Item.find(params[:item_id]) 
   end
 
   def create
