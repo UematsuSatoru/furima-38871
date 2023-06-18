@@ -1,15 +1,14 @@
 class SendsRecordsForm
   include ActiveModel::Model
-  attr_accessor :post_code, :area_id, :city, :address, :tel, :building, :user_id, :item_id
+  attr_accessor :number, :exp_month, :exp_year, :cvc, :post_code, :area_id, :city, :address, :tel, :building, :user_id, :item_id, :token
 
   with_options presence: true do
     validates :post_code, format: { with: /\A\d{3}-\d{4}\z/, message: 'is invalid. Enter it as follows (e.g. 123-4567)' }
     validates :area_id
     validates :city
     validates :address
-    validates :tel, presence: true, numericality: { only_integer: true }, length: { in: 10..11 }
-    
-
+    validates :tel, numericality: { only_integer: true }, length: { in: 10..11 } 
+  end
 
   def save
     ActiveRecord::Base.transaction do
@@ -29,5 +28,4 @@ class SendsRecordsForm
       )
     end
   end
-end
 end
