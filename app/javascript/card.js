@@ -1,27 +1,30 @@
 const pay = () => {
-
   const payjp = Payjp('pk_test_a9fbc092502597a9059c3478')
   const elements = payjp.elements();
-  const NumberElement = elements.create('cardNumber');
-  const ExpMonthElement = elements.create('cardExpiry');
-  const ExpYearElement = elements.create('cardExpiry');
-  const CvcElement = elements.create('cardCvc');
-
-  NumberElement.mount('#number-form');
-  ExpMonthElement.mount('#exp-month-form');
-  ExpYearElement.mount('#exp-year-form');
-  CvcElement.mount('#cvc-form');
+  const numberElement = elements.create('cardNumber');
+  const expiryElement = elements.create('cardExpiry');
+  const cvcElement = elements.create('cardCvc');
+  
+  numberElement.mount('#number-form');
+  expiryElement.mount('#expiry-form');
+  cvcElement.mount('#cvc-form');
+  
 
   const submit = document.getElementById("button");
   submit.addEventListener("click", (e) => {
     e.preventDefault();
-
-    payjp.createToken(NumberElement).then(function(response)  {
+    payjp.createToken(numberElement).then(function (response) { 
       if (response.error) {
       } else {
         const token = response.id;
-        console.log(token)
+        const renderDom = document.getElementById("charge-form");
+        const tokenObj = `<input value=${token} name='token' type="hidden">`;
+        renderDom.insertAdjacentHTML("beforeend", tokenObj);
       }
+      numberElement.clear();
+      expiryElement.clear();
+      cvcElement.clear();
+      document.getElementById("charge-form").submit();
     });
   });
 };

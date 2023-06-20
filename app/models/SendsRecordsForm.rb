@@ -1,6 +1,6 @@
 class SendsRecordsForm
   include ActiveModel::Model
-  attr_accessor :post_code, :area_id, :city, :address, :tel, :building, :user_id, :item_id, :record_id
+  attr_accessor :post_code, :area_id, :city, :address, :tel, :building, :user_id, :item_id, :record_id, :token
 
   validates :area_id, numericality: { other_than: 1 ,message: "can't be blank"}
   with_options presence: true do
