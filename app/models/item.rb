@@ -6,6 +6,7 @@ class Item < ApplicationRecord
   belongs_to :delivery_charge
   belongs_to :user
   belongs_to :number
+  
 
   validates :name, presence: true
   validates :explanation, presence: true
@@ -16,6 +17,6 @@ class Item < ApplicationRecord
   
   
   has_one_attached :image
-  has_many :orders
+  has_one :order
 
 end

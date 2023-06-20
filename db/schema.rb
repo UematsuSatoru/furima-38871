@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_06_17_104245) do
+ActiveRecord::Schema.define(version: 2023_06_19_160849) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -52,17 +52,18 @@ ActiveRecord::Schema.define(version: 2023_06_17_104245) do
     t.string "city", null: false
     t.string "address", null: false
     t.string "tel", null: false
-    t.string "building", null: false
+    t.string "building"
     t.integer "area_id", null: false
-    t.bigint "send_id", null: false
-    t.index ["send_id"], name: "index_orders_on_send_id"
+    t.bigint "record_id", null: false
+    t.index ["record_id"], name: "index_orders_on_record_id"
   end
 
-  create_table "sends", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "records", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "item_id", null: false
-    t.index ["item_id"], name: "index_sends_on_item_id"
-    t.index ["user_id"], name: "index_sends_on_user_id"
+    t.integer "order_id"
+    t.index ["item_id"], name: "index_records_on_item_id"
+    t.index ["user_id"], name: "index_records_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -85,7 +86,7 @@ ActiveRecord::Schema.define(version: 2023_06_17_104245) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "items", "users"
-  add_foreign_key "orders", "sends"
-  add_foreign_key "sends", "items"
-  add_foreign_key "sends", "users"
+  add_foreign_key "orders", "records"
+  add_foreign_key "records", "items"
+  add_foreign_key "records", "users"
 end
