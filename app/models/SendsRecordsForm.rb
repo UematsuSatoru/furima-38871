@@ -27,6 +27,8 @@ class SendsRecordsForm
       building: building,
       area_id: area_id,
       record_id: record_id,
+      item_id: item_id,
+      
     )
   end
   
