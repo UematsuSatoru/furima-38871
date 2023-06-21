@@ -7,7 +7,8 @@ class SendsRecordsForm
     validates :post_code, format: { with: /\A\d{3}-\d{4}\z/, message: 'is invalid. Enter it as follows (e.g. 123-4567)' }
     validates :city
     validates :address
-    validates :tel, numericality: { only_integer: true }, length: { in: 10..11 } 
+    validates :tel, numericality: { only_integer: true }, format: { with: /\A\d{10,11}\z/ }
+    validates :token
   end
   
   def save

@@ -49,10 +49,16 @@ RSpec.describe SendsRecordsForm, type: :model do
         expect(@sends_records_form.errors.full_messages).to include("Tel can't be blank")
       end
 
-      it 'telが10桁以上11桁以内の半角数値でないと保存できないこと' do
-        @sends_records_form.tel = '123456789011'
+      it "telが10桁以上11桁以内の半角数値でないと保存できないこと" do
+        @sends_records_form.tel = "1233456789123"
         @sends_records_form.valid?
-        expect(@sends_records_form.errors.full_messages).to include('Tel is too long (maximum is 11 characters)')
+        expect(@sends_records_form.errors.full_messages).to include("Tel is invalid")
+      end
+      
+      it "tokenが空では登録できないこと" do
+        @sends_records_form.token = nil
+        @sends_records_form.valid?
+        expect(@sends_records_form.errors.full_messages).to include("Token can't be blank")
       end
     end
   end
