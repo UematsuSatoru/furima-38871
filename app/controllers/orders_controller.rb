@@ -1,4 +1,7 @@
 class OrdersController < ApplicationController
+
+  before_action :move_to_index, only: [:index, :create]
+
   def index
     @sends_records_form = SendsRecordsForm.new
     @item = Item.find(params[:item_id]) 
@@ -36,6 +39,12 @@ class OrdersController < ApplicationController
         currency: 'jpy'                 
     )
   end
+
+  def move_to_index
+    @item = Item.find(params[:item_id])
+    if current_user == @item.user || @item.order.present?
+      redirect_to root_path
+    end
+  end
    
-  
-end
+end 
