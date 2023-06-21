@@ -14,6 +14,7 @@ class OrdersController < ApplicationController
     @item = Item.find(params[:item_id]) 
     if @sends_records_form.valid?
       pay_item
+
       @sends_records_form.save
       redirect_to root_path
     else
@@ -28,11 +29,11 @@ class OrdersController < ApplicationController
   end
 
   def pay_item
-    Payjp.api_key = "sk_test_0508289f3343ad47a8af88c8"  # 自身のPAY.JPテスト秘密鍵を記述しましょう
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
       Payjp::Charge.create(
-        amount: @item.price,  # 商品の値段
-        card: sends_records_params[:token],    # カードトークン
-        currency: 'jpy'                 # 通貨の種類（日本円）
+        amount: @item.price,  
+        card: sends_records_params[:token],   
+        currency: 'jpy'                 
     )
   end
    
