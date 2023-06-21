@@ -10,9 +10,11 @@
       <%= image_tag @item.image, class: "item-box-img" %>
 
       <%# 商品が売れている場合は、sold outを表示しましょう %>
+      <% if @records.find_by(item_id: @item.id) %>
       <div class="sold-out">
         <span>Sold Out!!</span>
       </div>
+      <%end%>
       <%# //商品が売れている場合は、sold outを表示しましょう %>
 
     </div>

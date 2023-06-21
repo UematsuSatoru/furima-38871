@@ -24,6 +24,8 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @items = Item.all
+    @records = Record.all
   end
 
   def edit
