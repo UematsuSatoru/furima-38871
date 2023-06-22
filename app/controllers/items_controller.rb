@@ -7,6 +7,7 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.all.order("created_at DESC")
+    @records = Record.all
   end
 
   def new
@@ -23,9 +24,18 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @items = Item.all
+    @records = Record.all
   end
 
   def edit
+    @item = Item.find(params[:id])
+    unless current_user == @item.user
+      redirect_to root_path
+    end
+    if @item.record.present?
+      redirect_to root_path
+    end
   end
 
   def update
