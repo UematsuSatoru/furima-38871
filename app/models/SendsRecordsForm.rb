@@ -21,7 +21,7 @@ class SendsRecordsForm
     )
   
     self.record_id = record.id
-  
+  binding.pry
     Order.create(
       post_code: post_code,
       city: city,
@@ -29,10 +29,7 @@ class SendsRecordsForm
       tel: tel,
       building: building,
       area_id: area_id,
-      record_id: record_id,
-      item_id: item_id,
-      user_id: user_id,
-
+      record_id: record_id
     )
   end
   
