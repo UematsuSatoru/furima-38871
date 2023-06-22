@@ -7,7 +7,6 @@ FactoryBot.define do
     address     { '青山1-1-1'}
     tel         { Faker::Number.number(digits: 11) }
     token       {"tok_abcdefghijk00000000000000000"}
-
-  
+    
   end
 end

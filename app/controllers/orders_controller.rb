@@ -2,22 +2,17 @@ class OrdersController < ApplicationController
 
   before_action :authenticate_user!
   before_action :move_to_index, only: [:index, :create]
+  before_action :set_item, only: [:index, :create]
  
 
 
   def index
-    @sends_records_form = SendsRecordsForm.new
-    @item = Item.find(params[:item_id]) 
-  end
-
-  def new
     @sends_records_form = SendsRecordsForm.new
   end
 
 
   def create
     @sends_records_form = SendsRecordsForm.new(sends_records_params)
-    @item = Item.find(params[:item_id]) 
     if @sends_records_form.valid?
       pay_item
 
@@ -49,5 +44,11 @@ class OrdersController < ApplicationController
       redirect_to root_path
     end
   end
+
+  def set_item
+    @item = Item.find(params[:item_id])
+  end
    
+  
+
 end 

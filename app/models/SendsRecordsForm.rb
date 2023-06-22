@@ -9,6 +9,9 @@ class SendsRecordsForm
     validates :address
     validates :tel, numericality: { only_integer: true }, format: { with: /\A\d{10,11}\z/ }
     validates :token
+    validates :user_id
+    validates :item_id
+
   end
   
   def save
@@ -28,7 +31,8 @@ class SendsRecordsForm
       area_id: area_id,
       record_id: record_id,
       item_id: item_id,
-      
+      user_id: user_id,
+
     )
   end
   

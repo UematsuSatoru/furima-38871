@@ -9,6 +9,8 @@ FactoryBot.define do
     area_id            {Faker::Number.between(from: 2, to: 48)}
     number_id          {Faker::Number.between(from: 2, to: 4)}
     price              {Faker::Number.between(from: 300, to: 9999999)}
+
     association :user
+    
   end
 end
