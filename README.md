@@ -4,8 +4,8 @@
 |---------------------|----------------------|---------------------------|
 | last_name           | string               | null: false               |
 | first_name          | string               | null: false               |
-| furigana_last       | string               | null: false               |
-| furigana_first      | string               | null: false               |
+| last_kana           | string               | null: false               |
+| first_kana          | string               | null: false               |
 | nickname            | string               | null: false               |
 | birth_date          | date                 | null: false               |
 | encrypted_password  | string               | null: false               |
@@ -33,7 +33,7 @@
 - belongs_to :user
 - has_one :record
 
-## sendsテーブル
+## ordersテーブル
 
 | Column              | Type                 | Options                       |
 |---------------------|----------------------|-------------------------------|
@@ -56,4 +56,4 @@
 
 - belongs_to :item
 - belongs_to :user
-- has_one :send
+- has_one :order
