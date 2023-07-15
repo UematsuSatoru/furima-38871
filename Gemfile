@@ -59,10 +59,6 @@ group :development do
   gem 'rubocop', require: false
 end
 
-group :production do
-  gem 'pg'
-end
-
 gem 'devise'
 
 gem 'rspec-rails', '~> 4.0.0'
@@ -81,6 +77,7 @@ gem 'mini_magick'
 gem 'image_processing', '~> 1.2'
 gem 'payjp'
 gem "aws-sdk-s3", require: false
+
 group :production do
   gem 'unicorn', '5.4.1'
 end
